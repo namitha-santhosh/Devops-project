@@ -4,14 +4,14 @@
 
 
 **Application Setup:**
-- You initiated the Employee Management System application.
+- I  Configured the Employee Management System application.
 
 **AWS EC2 Instance Creation:**
 - An AWS EC2 instance was created for hosting your application.
 
 **PostgreSQL Installation and Configuration:**
 - PostgreSQL was installed on the EC2 instance.
-- You set up a password for the PostgreSQL user "postgres."
+- I set up a password for the PostgreSQL user "postgres."
 - The "employee_app" database was created to support the application.
 - Within the "employee_app" database, you defined a table named "employees" with attributes like id, firstname, lastname, and email.
 
