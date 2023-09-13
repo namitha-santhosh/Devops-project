@@ -7,13 +7,13 @@
 - I  Configured the Employee Management System application.
 
 **AWS EC2 Instance Creation:**
-- An AWS EC2 instance was created for hosting your application.
+- An AWS EC2 instance was created for hosting the database server (PostgreSql)
 
 **PostgreSQL Installation and Configuration:**
 - PostgreSQL was installed on the EC2 instance.
 - I set up a password for the PostgreSQL user "postgres."
 - The "employee_app" database was created to support the application.
-- Within the "employee_app" database, you defined a table named "employees" with attributes like id, firstname, lastname, and email.
+- Within the "employee_app" database, i defined a table named "employees" with attributes like id, firstname, lastname, and email.
 
 **EBS Volume Addition:**
 - For the data reliability, i attached an additional Elastic Block Store (EBS) volume to the EC2 instance and configured the necessary mounting.
