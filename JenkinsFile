@@ -3,19 +3,38 @@ pipeline {
         label 'agent1'
     }
 
+    tools {
+       
+        maven "MAVEN_HOME"
+    }
+
     stages {
         stage('Checkout') {
             steps {
                 
                 git branch: 'main', credentialsId: 'githubcredentials', url: 'https://github.com/j-rin/java_sql.git'
 
-                
-                
-
-                
             }
         }
-        stage('build') {
+        
+        stage('Maven Build') {
+            
+            steps {
+                sh 'mvn clean package'
+            }
+        }
+        stage('Scan') {
+            steps {
+         
+                withSonarQubeEnv(installationName: 'sonar-server') { 
+                sh 'mvn sonar:sonar'
+                }
+            }
+        }
+        
+        
+        
+        stage('Image Build') {
             steps {
                 script{
                 sh "whoami"
@@ -39,4 +58,5 @@ pipeline {
          
         
 }
+ 
  
