@@ -48,7 +48,7 @@
 
 **Jenkins Pipeline**
    
-<img src="https://github.com/j-rin/java_sql/new/Screenshot%from%2023-09-13 17-02-26.png" width="600" height="300">
+<img src="https://github.com/j-rin/java_sql/new/Screenshot%20from%202023-09-13 17-02-26.png" width="600" height="300">
 
 - Automation was introduced via a Jenkins pipeline using a declarative pipeline script.
 
