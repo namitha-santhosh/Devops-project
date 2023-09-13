@@ -37,7 +37,7 @@ pipeline {
         stage('Image Build') {
             steps {
                 script{
-               
+                sh "whoami"
                 sh "docker build -t jerinpaul/jenkins-app:latest ."
                 }
                 
@@ -52,6 +52,15 @@ pipeline {
                 
             }
         }
+        stage('Deploy') {
+            steps {
+                script{
+                
+                sh "docker run -p 8080:8080 -d jerinpaul/jenkins-app:latest"
+                }
+                
+            }
+        }
        
             
     }
@@ -59,4 +68,6 @@ pipeline {
         
 }
  
+
+
  
