@@ -10,17 +10,18 @@
 - An AWS EC2 instance was created for hosting the database server (PostgreSql)
 
 **PostgreSQL Installation and Configuration:**
- <img src="https://github.com/j-rin/java_sql/blob/main/new/Screenshot%20from%202023-09-13%2017-05-54.png" width="600" height="300">
+ 
 - PostgreSQL was installed on the EC2 instance.
 - I set up a password for the PostgreSQL user "postgres."
 - The "employee_app" database was created to support the application.
 - Within the "employee_app" database, i defined a table named "employees" with attributes like id, firstname, lastname, and email.
+<img src="https://github.com/j-rin/java_sql/blob/main/new/Screenshot%20from%202023-09-13%2017-05-54.png" width="600" height="300">
 
 **EBS Volume Addition:**
 <img src="https://github.com/j-rin/java_sql/blob/main/new/Screenshot%20from%202023-09-13%2017-07-58.png" width="600" height="300">
 - For the data reliability, i attached an additional Elastic Block Store (EBS) volume to the EC2 instance and configured the necessary mounting.
 - Automation of backups was implemented using crontab, with the backup script available in your GitHub repository.And tested for its working
-  <img src="https://github.com/j-rin/java_sql/blob/main/new/Screenshot%20from%202023-09-13%2021-29-46.png" width="600" height="300">
+<img src="https://github.com/j-rin/java_sql/blob/main/new/Screenshot%20from%202023-09-13%2021-29-46.png" width="600" height="300">
 
 **PostgreSql Configuration:**
 - Configuration details, including the database URL, username, and password, were added to the application's properties.
