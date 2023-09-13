@@ -9,8 +9,8 @@
 **AWS EC2 Instance Creation:**
 
 - An AWS EC2 instance was created for hosting the database server (PostgreSql)
-- 
-- Also its security groups were configured 
+ 
+- Also its security groups for the PostgreSql was configured 
 
 **PostgreSQL Installation and Configuration:**
  
