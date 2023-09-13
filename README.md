@@ -47,7 +47,7 @@
 - Created the security group that aws needeed for the application
 
 **Jenkins Pipeline**
-     ![GitHub Logo](new/)
+     ![GitHub Logo](new/Screenshot from 2023-09-13 17-02-26.png)
 
      - Automation was introduced via a Jenkins pipeline using a declarative pipeline script.
 
