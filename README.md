@@ -1,57 +1,69 @@
 # java_sql
 
+Application Setup:
 
-First i setup the application of employee management system
+You initiated the Employee Management System application.
+AWS EC2 Instance Creation:
 
-Then created the an ec2 instance in AWS
+An AWS EC2 instance was created for hosting your application.
+PostgreSQL Installation and Configuration:
 
-Installed the Postgresql in that instance
+PostgreSQL was installed on the EC2 instance.
+You set up a password for the PostgreSQL user "postgres."
+The "employee_app" database was created to support the application.
+Within the "employee_app" database, you defined a table named "employees" with attributes like id, firstname, lastname, and email.
+EBS Volume Addition:
 
-    setup password for the user postgres
+To enhance data reliability, you attached an additional Elastic Block Store (EBS) volume to the EC2 instance and configured the necessary mounting.
+Automation of backups was implemented using crontab, with the backup script available in your GitHub repository.
+Application Configuration:
 
-    created the database employee_app for the application 
+Configuration details, including the database URL, username, and password, were added to the application's properties.
+Maven Build:
 
-    By using the employee_app database created the table in it name employees
+The application was packaged into a JAR file using Maven.
+Docker Image Creation:
 
-       It contains the attributes like id, firstname, lastname, email.
-       
-    For the i connected  a extra EBS to the ec2 instance and mounted it and using the crontab automated the backed uisng the pgdumb command,the bash script is also given in the github 
+You crafted a Dockerfile to generate a Docker image from your application.
 
-Next i setup the application.properties data to the application files like database url,username,password etc
+Docker Image Publication:
 
-Then using the maven i packaged a jar file out of the application
+The Docker image was pushed to Docker Hub for convenient sharing and distribution.
+Kubernetes Cluster Setup:
 
-After that i wrote the docker file to create the image out of it
+A Kubernetes cluster was established, featuring two worker nodes.
+Default Pod Initialization:
 
-I ran the image and tested it
+The initial setup included the automatic deployment of default pods within the Kubernetes cluster.
+Deployment and Service Application:
 
-Then i pushed the image to dockerhub 
+Deployment and Service configurations were applied to Kubernetes using kubectl to deploy your application.
+AWS Target Group Configuration:
 
-After that we setup the kubernetes cluster with 2 worker nodes in it
+You configured an AWS target group to manage traffic routing to the application.
+Load Balancer Setup:
 
-     All the default pods were running
+An AWS Application Load Balancer was created and linked to the target group to distribute traffic effectively.
+Jenkins Pipeline Automation:
 
-     Then we applied the Deployment file and service file using kubectl
+Automation was introduced via a Jenkins pipeline.
+GitHub Repository Integration:
 
-     then we created the target group in the aws
+The pipeline was set up to clone your GitHub repository.
+Build and Packaging:
 
-     And created a Application load balancer and attached to the target group
+Maven was employed within the pipeline for building the project using "mvn clean package."
+Docker Image Creation and Push:
 
-`````````````````````````````````````````````````````````````````````````
+The pipeline included the creation of a Docker image from the Dockerfile and its subsequent push to Docker Hub.
+Integration with Sonarqube:
 
-After this we created the jenkins pipeline to automate it
-![Screenshot from 2023-09-13 17-02-26](https://github.com/j-rin/java_sql/assets/78196411/2842e884-ef64-4eab-8e01-a60b3071fe68)
+Sonarqube was integrated into the pipeline to perform code analysis.
+Docker Deployment in Tomcat:
 
-Cloned the repo from github
+Docker was used to deploy the application within a Tomcat container.
 
-build using mvn clean package
 
-then took the Dockerfile and created the image
 
-And pushed to Dockerhub
-
-Integrated it with Sonarqube for the analysis
-
-Then Deployed it with Docker in tomcat
 
      
