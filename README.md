@@ -23,14 +23,14 @@
 <img src="https://github.com/j-rin/java_sql/blob/main/new/Screenshot%20from%202023-09-13%2017-07-58.png" width="600" height="300">
 
 - For the data reliability, i attached an additional Elastic Block Store (EBS) volume to the EC2 instance and configured the necessary mounting.
-- Automation of backups was implemented using crontab, with the backup script available in your GitHub repository.And tested for its working
+- Automation of backups was implemented using crontab, with the bash script ,It is also given in the github .And tested for its working
 
 
   
 <img src="https://github.com/j-rin/java_sql/blob/main/new/Screenshot%20from%202023-09-13%2021-29-46.png" width="600" height="300">
 
 **PostgreSql Configuration:**
-- Configuration details, including the database URL, username, and password, were added to the application's properties.
+- Configuration details, including the database URL, username, and password, were added to the application.properties to the java application 
 
 **Maven Build:**
 - The application was packaged into a JAR file using Maven.
