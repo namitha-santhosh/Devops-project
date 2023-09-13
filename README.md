@@ -40,8 +40,8 @@
 - Deployment and Service configurations were applied to Kubernetes using kubectl to deploy your application.These files are also given 
 
 **AWS**
-- You configured an AWS target group to manage traffic routing to the application.
-- 
+- You configured an AWS target group to manage traffic routing to the application for the worker nodes .
+
 - An AWS Application Load Balancer was created and linked to the target group to distribute traffic effectively.
 
 - Created the security group that aws needeed for the application
