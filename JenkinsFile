@@ -3,11 +3,6 @@ pipeline {
         label 'agent1'
     }
 
-    tools {
-       
-        maven "MAVEN_HOME"
-    }
-
     stages {
         stage('Checkout') {
             steps {
