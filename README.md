@@ -1,24 +1,21 @@
-# java_sql
+
 
 
 
 
 **Application Setup:**
-- I  Configured the Employee Management System application.
-
-**AWS EC2 Instance Creation:**
-
-- An AWS EC2 instance was created for hosting the database server (PostgreSql)
- 
-- Also its security groups for the PostgreSql was configured 
+- Took Employee Management System application as the base of the project
 
 **PostgreSQL Installation and Configuration:**
- 
+
+- An AWS EC2 instance was created for hosting the database server (PostgreSql)
+- Also the security groups for the PostgreSql was configured 
 - PostgreSQL was installed on the EC2 instance.
 - I set up a password for the PostgreSQL user "postgres."
 - The "employee_app" database was created to support the application.
 - Within the "employee_app" database, i defined a table named "employees" with attributes like id, firstname, lastname, and email.
 - Configured the psql for listening to the public ip addresses to get the remote requests
+- Configuration details, including the database URL, username, and password, were added to the application.properties to the java application .This is done so that application connects correctly and the data is fetched from the database  
 <img src="https://github.com/j-rin/java_sql/blob/main/new/Screenshot%20from%202023-09-13%2017-05-54.png" width="600" height="300">
 
 **EBS Volume Addition:**
@@ -26,26 +23,19 @@
 
 <img src="https://github.com/j-rin/java_sql/blob/main/new/Screenshot%20from%202023-09-13%2017-07-58.png" width="600" height="300">
 
-- For the data reliability, i attached an additional Elastic Block Store (EBS) volume (/dev/xvdfa) to the EC2 instance and configured the necessary mounting(/mnt/my_ebs_volume).
+- For the data reliability, an additional Elastic Block Store (EBS) volume (/dev/xvdf) was attached to the EC2 instance and configured the necessary mounting(/mnt/my_ebs_volume).
   
-- Automation of backups was implemented using crontab, with the bash script ,It is also given in the github .And tested for its working by running the bashscript and the backup file was generated with the details of database 
+- Backups was automated  using crontab, with the bash script and working was tested
 
-
-  
 <img src="https://github.com/j-rin/java_sql/blob/main/new/Screenshot%20from%202023-09-13%2021-29-46.png" width="600" height="300">
 
-**Configuration:**
-- Configuration details, including the database URL, username, and password, were added to the application.properties to the java application .This is done so that application connects correctly and the data is fetched from the database  
-
-**Maven Build:**
+**Building and Containerizing**
 
 - The application was packaged into a JAR file using Maven.
   
 - java version 17 was also installed for running it and configured the path
 
-**Docker**
-
-- I created a Dockerfile to generate a Docker image from the application.
+- Created a Dockerfile to generate a Docker image from the application.
 
 - Dockerfile is given in the files
 
