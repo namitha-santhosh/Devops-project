@@ -21,8 +21,8 @@ public class Employee {
     @Column(name = "email")
     private String email;
 
-    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
-    private List<Project> projects = new ArrayList<>();
+   // @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
+   // private List<Project> projects = new ArrayList<>();
 
 
     public Long getId() {

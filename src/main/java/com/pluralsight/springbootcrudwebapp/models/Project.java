@@ -19,9 +19,9 @@ public class Project {
     @Column(name="manager_id")
     private Long managerId;
 
-    @ManyToOne
-    @JoinColumn(name = "emp_id")
-    private Employee employee;
+   // @ManyToOne
+   // @JoinColumn(name = "emp_id")
+   // private Employee employee;
 
     public Long getId() {
         return id;
