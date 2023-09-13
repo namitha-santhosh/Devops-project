@@ -61,6 +61,8 @@
 
 - Deployment and Service files were applied to Kubernetes using kubectl with necessary details  to deploy the application.These files are also given in repo
 
+- The service for the deployment waas running successfully and it given a port to connect to the application 
+
 <img src="https://github.com/j-rin/java_sql/blob/main/new/WhatsApp%20Image%202023-09-13%20at%204.39.54%20PM.jpeg" width="600" height="300">
 
 **AWS**
