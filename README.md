@@ -26,7 +26,7 @@
 - The application was packaged into a JAR file using Maven.
 
 **Docker**
-- I created a Dockerfile to generate a Docker image from your application.
+- I created a Dockerfile to generate a Docker image from the application.
 
 - Dockerfile is given in the files
 
@@ -37,10 +37,10 @@
 
 - The initial setup included the automatic deployment of default pods within the Kubernetes cluster.
 
-- Deployment and Service configurations were applied to Kubernetes using kubectl to deploy your application.These files are also given 
+- Deployment and Service configurations were applied to Kubernetes using kubectl to deploy the application.These files are also given 
 
 **AWS**
-- You configured an AWS target group to manage traffic routing to the application for the worker nodes .
+- I configured an AWS target group to manage traffic routing to the application for the worker nodes .
 
 - An AWS Application Load Balancer was created and linked to the target group to distribute traffic effectively.
 
@@ -53,7 +53,7 @@
 - Automation was introduced via a Jenkins pipeline using a declarative pipeline script.
 
   **GitHub Repository Integration:**
-      - The pipeline was set up to clone your GitHub repository.
+      - The pipeline was set up to clone my GitHub repository.
 
   **Build and Packaging:**
       - Maven was employed within the pipeline for building the project using "mvn clean package."
