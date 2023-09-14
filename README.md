@@ -60,7 +60,7 @@
 
 - Assigned necessary security groups for the ALB
  http://clusteralb-1649197627.ap-south-1.elb.amazonaws.com/
-<img src="https://github.com/j-rin/java_sql/blob/main/new/WhatsApp%20Image%202023-09-13%20at%204.39.53%20PM.jpeg" width="600" height="300">
+<img src="https://github.com/j-rin/DevopsAssessment/blob/main/new/Screenshot%20from%202023-09-14%2015-48-55.png" width="600" height="300">
 
 **Jenkins Pipeline**
    
