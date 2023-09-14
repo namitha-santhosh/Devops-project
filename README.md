@@ -42,7 +42,7 @@
 
 **Kubernetes**
 
-- A Kubernetes cluster was established using kubeadm, featuring two worker nodes.
+- A Kubernetes cluster was established using Kubeadm,EKS featuring two worker nodes.
 
 - Made sure that all the components were running properly by checking their status using kubectl commands.
 
@@ -59,6 +59,7 @@
 - An Application Load Balancer was created and linked to the target group to distribute traffic effectively.
 
 - Assigned necessary security groups for the ALB
+ http://clusteralb-1649197627.ap-south-1.elb.amazonaws.com/
 <img src="https://github.com/j-rin/java_sql/blob/main/new/WhatsApp%20Image%202023-09-13%20at%204.39.53%20PM.jpeg" width="600" height="300">
 
 **Jenkins Pipeline**
