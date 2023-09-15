@@ -1,4 +1,5 @@
-pipeline {
+
+        pipeline {
     agent {
         label 'agent1'
     }
@@ -52,13 +53,13 @@ pipeline {
                 
             }
         }
-        stage('Deploy') {
+        stage('Deploying to K8s') {
             steps {
-                script{
-                
-                sh "docker run -p 8080:8080 -d jerinpaul/jenkins-app:latest"
+                withKubeConfig([credentialsId: 'kubernetescredentials', serverUrl: 'https://77CA947B7DE0FEE8F24A92959D3C387F.gr7.ap-south-1.eks.amazonaws.com']) {
+                    sh 'kubectl apply -f deployment.yaml'
+                    sh 'kubectl get pods'
+                   
                 }
-                
             }
         }
        
@@ -68,6 +69,8 @@ pipeline {
         
 }
  
+
+
 
 
  
