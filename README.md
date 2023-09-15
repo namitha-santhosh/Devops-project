@@ -64,7 +64,7 @@
 
 **Jenkins Pipeline**
    
-<img src="https://github.com/j-rin/java_sql/blob/main/new/Screenshot%20from%202023-09-13%2017-02-26.png" width="600" height="300">
+<img src="https://github.com/j-rin/DevopsAssessment/blob/main/new/Screenshot%20from%202023-09-15%2014-55-57.png" width="600" height="300">
 
 - Automation was introduced via a Jenkins pipeline using a declarative pipeline script.
 
@@ -78,7 +78,9 @@
       - The pipeline included the creation of a Docker image from the Dockerfile and its subsequent push to Docker Hub.
 
    **Integration with Sonarqube:**
+<img src="https://github.com/j-rin/DevopsAssessment/blob/main/new/Screenshot%20from%202023-09-15%2014-58-23.png" width="600" height="300">
+
       - Sonarqube was integrated into the pipeline to perform code analysis.
 
-   **Docker Deployment:**
-      - Docker was used to deploy the application to Tomcat.
+   **Kubernetes Deployment:**
+      - Kubernetes Plugin was used to deploy the application into the pods .
