@@ -80,7 +80,7 @@
    **Integration with Sonarqube:**
 <img src="https://github.com/j-rin/DevopsAssessment/blob/main/new/Screenshot%20from%202023-09-15%2014-58-23.png" width="600" height="300">
 
-      - Sonarqube was integrated into the pipeline to perform code analysis.
+  - Sonarqube was integrated into the pipeline to perform code analysis.
 
    **Kubernetes Deployment:**
       - Kubernetes Plugin was used to deploy the application into the pods .
