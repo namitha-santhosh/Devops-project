@@ -1,0 +1,24 @@
+# For creating new EKS cluster in AWS using eksctl
+eksctl create cluster   
+    --name springboot-cluster  
+    --region ap-south-1   
+    --nodegroup-name springboot-nodes   
+    --node-type t3.medium   
+    --nodes 2   
+    --nodes-min 1   
+    --nodes-max 3   
+    --managed
+
+# to check if cluster is up
+eksctl get cluster
+kubectl get nodes
+
+#to apply the yaml files
+kubectl apply -f springboot-deployment.yaml
+kubectl apply -f postgres-deployment.yaml
+kubectl apply -f springboot-service.yaml
+
+kubectl get pods
+kubectl get svc 
+kubectl describe svc <svc-name>
+

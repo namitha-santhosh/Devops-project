@@ -1,75 +1,51 @@
-
-        pipeline {
-    agent {
-        label 'agent1'
-    }
-
+pipeline {
+    agent any
     tools {
-       
-        maven "MAVEN_HOME"
+        maven 'Maven 3.9.9'
+        jdk 'JDK17'
     }
-
     stages {
-        stage('Checkout') {
+        stage('Clone') {
             steps {
-                
-                git branch: 'main', credentialsId: 'githubcredentials', url: 'https://github.com/j-rin/java_sql.git'
-
+                git branch: 'main', url: 'https://github.com/harithakkrajeev/DevopsAssessment.git'
             }
         }
         
-        stage('Maven Build') {
-            
+        stage('Build') {
             steps {
-                sh 'mvn clean package'
+                    sh 'mvn clean install'
             }
         }
-        stage('Scan') {
+        stage('SonarQube Analysis') {
             steps {
-         
-                withSonarQubeEnv(installationName: 'sonar-server') { 
-                sh 'mvn sonar:sonar'
+                    withSonarQubeEnv('Sonar-server') {
+                        sh 'mvn sonar:sonar'
+                    }
+            }
+        }
+        stage('Upload to Nexus') {
+            steps {
+                    sh 'mvn deploy'
                 }
-            }
         }
-           
-        
         stage('Image Build') {
             steps {
-                script{
-                sh "whoami"
-                sh "docker build -t jerinpaul/jenkins-app:latest ."
+                script {
+                    sh "docker build -t haritha0509/maven-app:latest ."
                 }
-                
             }
         }
-        stage('push to dockerhub') {
+        stage('Push to DockerHub') {
             steps {
-                script{
-                sh "docker login"
-                sh "docker push jerinpaul/jenkins-app:latest"
-                }
-                
-            }
-        }
-        stage('Deploying to K8s') {
-            steps {
-                withKubeConfig([credentialsId: 'kubernetescredentials', serverUrl: 'https://77CA947B7DE0FEE8F24A92959D3C387F.gr7.ap-south-1.eks.amazonaws.com']) {
-                    sh 'kubectl apply -f deployment.yaml'
-                    sh 'kubectl get pods'
-                   
+                script {
+                    withCredentials([usernamePassword(credentialsId: 'dockerhub-pat', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
+                        sh """
+                        echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
+                        docker push haritha0509/maven-app:latest
+                    """
+                    }
                 }
             }
-        }
-       
-            
-    }
-         
-        
+        } 
+   }
 }
- 
-
-
-
-
- 
