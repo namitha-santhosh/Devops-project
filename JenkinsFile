@@ -7,7 +7,7 @@ pipeline {
     stages {
         stage('Clone') {
             steps {
-                git branch: 'main', url: 'https://github.com/harithakkrajeev/DevopsAssessment.git'
+                git branch: 'main', url: 'https://github.com/namitha-santhosh/Devops-project.git'
             }
         }
         
@@ -31,17 +31,17 @@ pipeline {
         stage('Image Build') {
             steps {
                 script {
-                    sh "docker build -t haritha0509/maven-app:latest ."
+                    sh "docker build -t namitha612/jenkins-app:latest ."
                 }
             }
         }
         stage('Push to DockerHub') {
             steps {
                 script {
-                    withCredentials([usernamePassword(credentialsId: 'dockerhub-pat', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
+                    withCredentials([usernamePassword(credentialsId: 'dockerhub-pat-nami', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
                         sh """
                         echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
-                        docker push haritha0509/maven-app:latest
+                        docker push namitha612/jenkins-app:latest
                     """
                     }
                 }
