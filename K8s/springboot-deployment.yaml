@@ -24,3 +24,17 @@ spec:
               value: postgres
             - name: SPRING_DATASOURCE_PASSWORD
               value: password
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: springboot-service
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-type: "nlb"
+spec:
+  type: LoadBalancer
+  selector:
+    app: springboot
+  ports:
+    - port: 80
+      targetPort: 8080
