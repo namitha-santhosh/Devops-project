@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: springboot-container
-          image: haritha0509/maven-app:latest
+          image: namitha612/jenkins-app:latest
           ports:
             - containerPort: 8080
           env:
