@@ -52,20 +52,30 @@ pipeline {
                 script {
                     withAWS(credentials: 'aws-credentials', region: 'ap-south-1') {
                         withKubeConfig([
-                             credentialsId: 'kubernetescredentials',
-                             serverUrl: 'https://D2DD3F58D2418976A35B32A39EDAFDD7.gr7.ap-south-1.eks.amazonaws.com'
+                            credentialsId: 'kubernetescredentials',
+                            serverUrl: 'https://D2DD3F58D2418976A35B32A39EDAFDD7.gr7.ap-south-1.eks.amazonaws.com'
                         ]) {
                             sh '''
+                                # Force use of AWS CLI v2
+                                export PATH=/usr/local/bin:$PATH
+        
+                                echo "AWS version:"
+                                which aws
+                                aws --version
+        
+                                echo "KUBECONFIG location: $KUBECONFIG"
+                                echo "Printing kubeconfig content..."
+                                cat $KUBECONFIG
+        
                                 echo "Applying Kubernetes YAML files..."
-
-                                kubectl apply -f K8s/postgres-deployment.yaml
-                                kubectl apply -f K8s/springboot-deployment.yaml
-
+                                kubectl --kubeconfig=$KUBECONFIG apply -f K8s/postgres-deployment.yaml
+                                kubectl --kubeconfig=$KUBECONFIG apply -f K8s/springboot-deployment.yaml
+        
                                 echo "Waiting for pods to be ready..."
-                                kubectl get pods -o wide
-
+                                kubectl --kubeconfig=$KUBECONFIG get pods -o wide
+        
                                 echo "Services:"
-                                kubectl get svc
+                                kubectl --kubeconfig=$KUBECONFIG get svc
                             '''
                         }
                     }
