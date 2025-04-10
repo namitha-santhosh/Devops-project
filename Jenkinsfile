@@ -47,25 +47,14 @@ pipeline {
                 }
             }
         }
-        stage('Deploying to K8s') {
+         stage('Deploy to EKS') {
             steps {
-                withKubeConfig([
-                    credentialsId: 'kubernetescredentials',
-                    serverUrl: 'http://a93f550c2991544ed820ddd14e92b7ed-6020b47b282bcbb8.elb.ap-south-1.amazonaws.com/'
-                ]) {
-                    sh '''
-                        echo "Applying Kubernetes YAML files..."
-
-                        kubectl apply -f K8s/postgres-deployment.yaml
-                        kubectl apply -f K8s/springboot-deployment.yaml
-
-                        echo "Waiting for pods to be ready..."
-                        kubectl get pods -o wide
-
-                        echo "Services:"
-                        kubectl get svc
-                    '''
-                }
+                sh '''
+                    aws eks update-kubeconfig --region ap-south-1 --name springboot-cluster
+                    echo Applying Kubernetes YAML files...
+                    kubectl apply -f K8s/postgres-deployment.yaml
+                    kubectl apply -f K8s/springboot-deployment.yaml
+                '''
             }
         }
    }
