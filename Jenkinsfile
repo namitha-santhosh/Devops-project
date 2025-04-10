@@ -47,25 +47,26 @@ pipeline {
                 }
             }
         }
-         stage('Deploy to EKS') {
+        stage('Deploy to EKS') {
             steps {
-                withKubeConfig([
-                     credentialsId: 'kubernetescredentials',
-                     serverUrl: 'https://D2DD3F58D2418976A35B32A39EDAFDD7.gr7.ap-south-1.eks.amazonaws.com'
-                 ]) {
-                     sh '''
-                         echo "Applying Kubernetes YAML files..."
- 
-                         kubectl apply -f K8s/postgres-deployment.yaml
-                         kubectl apply -f K8s/springboot-deployment.yaml
- 
-                         echo "Waiting for pods to be ready..."
-                         kubectl get pods -o wide
- 
-                         echo "Services:"
-                         kubectl get svc
-                     '''
-                 }
+                withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws-credentials']]) {
+                    withKubeConfig([
+                        credentialsId: 'kubernetescredentials',
+                        serverUrl: 'https://D2DD3F58D2418976A35B32A39EDAFDD7.gr7.ap-south-1.eks.amazonaws.com'
+                    ]) {
+                        sh '''
+                            echo "Applying Kubernetes YAML files..."
+                            kubectl apply -f K8s/postgres-deployment.yaml
+                            kubectl apply -f K8s/springboot-deployment.yaml
+        
+                            echo "Waiting for pods to be ready..."
+                            kubectl get pods -o wide
+        
+                            echo "Services:"
+                            kubectl get svc
+                        '''
+                    }
+                }
             }
         }
    }
