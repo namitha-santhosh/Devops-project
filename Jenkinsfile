@@ -53,19 +53,10 @@ pipeline {
                     withAWS(credentials: 'aws-credentials', region: 'ap-south-1') {
                         withKubeConfig([
                             credentialsId: 'kubernetescredentials',
-                            serverUrl: 'https://D2DD3F58D2418976A35B32A39EDAFDD7.gr7.ap-south-1.eks.amazonaws.com'
+                            serverUrl: 'https://d2dd3f58d2418976a35b32a39edafdd7.gr7.ap-south-1.eks.amazonaws.com'
                         ]) {
                             sh '''
-                                # Force use of AWS CLI v2
-                                export PATH=/usr/local/bin:$PATH
-        
-                                echo "AWS version:"
-                                which aws
-                                aws --version
-        
-                                echo "KUBECONFIG location: $KUBECONFIG"
-                                echo "Printing kubeconfig content..."
-                                cat $KUBECONFIG
+                                
         
                                 echo "Applying Kubernetes YAML files..."
                                 kubectl --kubeconfig=$KUBECONFIG apply -f K8s/postgres-deployment.yaml
