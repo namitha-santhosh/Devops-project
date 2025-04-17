@@ -7,10 +7,28 @@ resource "aws_vpc" "main_vpc" {
   cidr_block = "10.0.0.0/16"
 }
 
-resource "aws_subnet" "public_subnet" {
+resource "aws_subnet" "public_subnet_1" {
   vpc_id                  = aws_vpc.main_vpc.id
   cidr_block              = "10.0.1.0/24"
+  availability_zone       = "ap-south-1a"
   map_public_ip_on_launch = true
+}
+
+resource "aws_subnet" "public_subnet_2" {
+  vpc_id                  = aws_vpc.main_vpc.id
+  cidr_block              = "10.0.2.0/24"
+  availability_zone       = "ap-south-1b"
+  map_public_ip_on_launch = true
+}
+
+resource "aws_route_table_association" "public_rta_1" {
+  subnet_id      = aws_subnet.public_subnet_1.id
+  route_table_id = aws_route_table.public_rt.id
+}
+
+resource "aws_route_table_association" "public_rta_2" {
+  subnet_id      = aws_subnet.public_subnet_2.id
+  route_table_id = aws_route_table.public_rt.id
 }
 
 resource "aws_internet_gateway" "gw" {
@@ -47,7 +65,7 @@ resource "aws_security_group" "allow_all" {
 resource "aws_instance" "ci_cd_instance" {
   ami                    = "ami-06b6e5225d1db5f46" # Ubuntu 22.04 LTS
   instance_type          = "t2.large"
-  subnet_id              = aws_subnet.public_subnet.id
+  subnet_id              = aws_subnet.public_subnet_1.id
   vpc_security_group_ids = [aws_security_group.allow_all.id]
   key_name               = "ci_cd"
   associate_public_ip_address = true
@@ -61,7 +79,7 @@ resource "aws_instance" "ci_cd_instance" {
 resource "aws_instance" "ansible_instance" {
   ami                    = "ami-06b6e5225d1db5f46"
   instance_type          = "t2.micro"
-  subnet_id              = aws_subnet.public_subnet.id
+  subnet_id              = aws_subnet.public_subnet_1.id
   vpc_security_group_ids = [aws_security_group.allow_all.id]
   key_name               = "ansible"
 
@@ -74,18 +92,13 @@ resource "aws_instance" "ansible_instance" {
 resource "aws_instance" "jenkins_instance" {
   ami                    = "ami-06b6e5225d1db5f46"
   instance_type          = "t2.medium"
-  subnet_id              = aws_subnet.public_subnet.id
+  subnet_id              = aws_subnet.public_subnet_1.id
   vpc_security_group_ids = [aws_security_group.allow_all.id]
   key_name               = "jenkins"
 
   tags = {
     Name = "Jenkins-Server"
   }
-}
-
-resource "aws_route_table_association" "public_rta" {
-  subnet_id      = aws_subnet.public_subnet.id
-  route_table_id = aws_route_table.public_rt.id
 }
 
 output "ci_cd_instance_ip" {
