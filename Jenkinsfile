@@ -61,6 +61,10 @@ pipeline {
                                 echo "Applying Kubernetes YAML files..."
                                 kubectl --kubeconfig=$KUBECONFIG apply -f K8s/postgres-deployment.yaml
                                 kubectl --kubeconfig=$KUBECONFIG apply -f K8s/springboot-deployment.yaml
+
+                                kubectl --kubeconfig=$KUBECONFIG rollout restart deployment springboot-app
+                                echo "Waiting for rollout to finish..."
+                                kubectl --kubeconfig=$KUBECONFIG rollout status deployment springboot-app
         
                                 echo "Waiting for pods to be ready..."
                                 kubectl --kubeconfig=$KUBECONFIG get pods -o wide
