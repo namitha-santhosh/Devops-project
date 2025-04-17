@@ -15,6 +15,7 @@ spec:
       containers:
         - name: springboot-container
           image: namitha612/jenkins-app:latest
+          imagePullPolicy: Always
           ports:
             - containerPort: 8080
           env:
