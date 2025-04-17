@@ -31,7 +31,7 @@ pipeline {
         stage('Image Build') {
             steps {
                 script {
-                    sh "docker build -t namitha612/jenkins-app:latest ."
+                    sh "docker build --no-cache -t namitha612/jenkins-app:latest ."
                 }
             }
         }
