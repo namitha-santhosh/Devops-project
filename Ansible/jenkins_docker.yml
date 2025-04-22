@@ -2,7 +2,6 @@
   hosts: jenkins_docker
   become: true
   tasks:
-    # Common prerequisites
     - name: Update apt cache
       apt:
         update_cache: yes
