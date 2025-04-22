@@ -2,7 +2,6 @@
   hosts: nexus_sonarqube
   become: yes
   tasks:
-    # Common prerequisites
     - name: Update apt cache
       apt:
         update_cache: yes
@@ -20,7 +19,7 @@
           - unzip
           - python3-pip
         state: present
-        # SonarQube Installation
+    # SonarQube Installation
     - name: Set sysctl file for SonarQube
       sysctl:
         name: vm.max_map_count
@@ -58,7 +57,6 @@
         group: sonarqube
         mode: '0755'
 
-    # Fixed extraction step for SonarQube
     - name: Extract SonarQube
       unarchive:
         src: /tmp/sonarqube.zip
@@ -215,7 +213,6 @@
         enabled: yes
 
     # Final setup and verification
-
     - name: Wait for SonarQube to start
       uri:
         url: http://{{ ansible_host }}:9000
