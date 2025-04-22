@@ -2,11 +2,12 @@ provider "aws" {
   region = "ap-south-1"
 }
 
-# ✅ VPC Setup
+# VPC Setup
 resource "aws_vpc" "main_vpc" {
   cidr_block = "10.0.0.0/16"
 }
 
+# Subnets setup
 resource "aws_subnet" "public_subnet_1" {
   vpc_id                  = aws_vpc.main_vpc.id
   cidr_block              = "10.0.1.0/24"
@@ -45,6 +46,7 @@ resource "aws_route" "default_route" {
   gateway_id             = aws_internet_gateway.gw.id
 }
 
+# Security Groups
 resource "aws_security_group" "allow_all" {
   vpc_id = aws_vpc.main_vpc.id
   ingress {
@@ -61,7 +63,7 @@ resource "aws_security_group" "allow_all" {
   }
 }
 
-# ✅ Shared EC2 Instance for SonarQube, and Nexus
+# Shared EC2 Instance for SonarQube and Nexus
 resource "aws_instance" "ci_cd_instance" {
   ami                    = "ami-06b6e5225d1db5f46" # Ubuntu 22.04 LTS
   instance_type          = "t2.large"
@@ -75,7 +77,7 @@ resource "aws_instance" "ci_cd_instance" {
   }
 }
 
-# ✅ EC2 Instance for Ansible
+# EC2 Instance for Ansible server
 resource "aws_instance" "ansible_instance" {
   ami                    = "ami-06b6e5225d1db5f46"
   instance_type          = "t2.micro"
@@ -88,7 +90,7 @@ resource "aws_instance" "ansible_instance" {
   }
 }
 
-# ✅ EC2 Instance for Jenkins
+# EC2 Instance for Jenkins
 resource "aws_instance" "jenkins_instance" {
   ami                    = "ami-06b6e5225d1db5f46"
   instance_type          = "t2.medium"
