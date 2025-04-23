@@ -110,3 +110,7 @@ output "ci_cd_instance_ip" {
 output "ansible_instance_ip" {
   value = aws_instance.ansible_instance.public_ip
 }
+
+output "jenkins_instance_ip" {
+  value = aws_instance.jenkins_instance.public_ip
+}
